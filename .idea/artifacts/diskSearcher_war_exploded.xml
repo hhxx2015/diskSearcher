@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="diskSearcher:war exploded">
+    <output-path>$PROJECT_DIR$/classes/artifacts/diskSearcher_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="diskSearcher" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="module" name="javax.servlet-api-4.0.0-b01-sources.jar" module-name="diskSearcher" />
+          <element id="library" level="module" name="lucene-analyzers-common-6.0.0.jar" module-name="diskSearcher" />
+          <element id="library" level="module" name="lucene-analyzers-smartcn-6.0.0.jar" module-name="diskSearcher" />
+          <element id="library" level="module" name="lucene-core-6.0.0.jar" module-name="diskSearcher" />
+          <element id="library" level="module" name="lucene-highlighter-6.0.0.jar" module-name="diskSearcher" />
+          <element id="library" level="module" name="lucene-memory-6.0.0.jar" module-name="diskSearcher" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="diskSearcher/web/Web" />
+    </root>
+  </artifact>
+</component>
