@@ -1,5 +1,6 @@
 package disk.hao.search;
 
+import disk.hao.config.config;
 import disk.hao.entity.SearchResult;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
@@ -16,7 +17,7 @@ public class Searcher {
 	public ArrayList<SearchResult> search(String queryString) {
 		ArrayList<SearchResult>  re = new ArrayList<>();
 		try {
-			String indexPath = "/home/hao/文档/j2ee_workspace/diskSearcher/data/index";
+			String indexPath = config.lucene_index_path;
 			int top=100;
 			String field = "content";
 	        Analyzer analyzer = new StandardAnalyzer();

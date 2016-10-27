@@ -12,6 +12,8 @@ public class config {
     public final static String PROXY_path = "/home/hao/PycharmProjects/ipproxy/data/";
 
     public final static String disk_message_path = "/home/hao/文档/j2ee_workspace/diskSearcher/data/user_share/";
+    public final static String lucene_index_path = "D:\\haozhenyuan\\workspace\\diskSearcher\\data\\index\\";
+    public final static String share_links = "D:\\haozhenyuan\\workspace\\diskSearcher\\data\\user_share\\";
 
     public final static int CONNECT_TIMEOUT = 6000;
     public final static int CONNECT_READ_TIMEOUT = 6000;

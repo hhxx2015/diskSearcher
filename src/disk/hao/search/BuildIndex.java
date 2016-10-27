@@ -1,5 +1,6 @@
 package disk.hao.search;
 
+import disk.hao.config.config;
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
@@ -77,8 +78,8 @@ public class BuildIndex {
 
     public static void main(String[] args) throws Exception {
         BuildIndex bi = new BuildIndex();
-        String pathFile = "/home/hao/文档/j2ee_workspace/diskSearcher/data/user_share/";
-        String indexPath = "/home/hao/文档/j2ee_workspace/diskSearcher/data/index";
+        String pathFile = config.share_links;
+        String indexPath = config.lucene_index_path;
         bi.buildNewIndex(pathFile,indexPath);
     }
 }
