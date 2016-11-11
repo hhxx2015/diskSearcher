@@ -17,6 +17,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.HashSet;
 
 
 /**
@@ -26,8 +27,9 @@ import java.nio.file.Paths;
 
 public class BuildIndex {
     //创建本地句子索引�?
+    int nub = 0;
     public void buildNewIndex(String fileDir,String sentenceIndex) throws Exception {
-
+        HashSet<String> setname = new HashSet<>();
         Path p = Paths.get(sentenceIndex);
         Directory dir =  new SimpleFSDirectory(p);//判断索引文件是否存在
 
@@ -61,24 +63,34 @@ public class BuildIndex {
 
                 String ls[] = line.split("\t");
                 if(!ls[0].equals("null")){
-                    String link_str ="https://pan.baidu.com/s/"+ls[0];
-                    System.out.println(ls[1]);
-                    sentence.add(new Field("content",ls[1],fieldType));
-                    sentence.add(new Field("link",link_str,fieldlink));
+                    if(ls.length>2){
+                        if(setname.contains(ls[1])){
+
+                        }else{
+                            String link_str ="https://pan.baidu.com/s/"+ls[0];
+//                    System.out.println(ls[1]);
+                            sentence.add(new Field("content",ls[1],fieldType));
+                            sentence.add(new Field("link",link_str,fieldlink));
 //                sentence.add(new Field("date",br.readLine(),fieldlink));
-                    indexWriter.addDocument(sentence);
+                            indexWriter.addDocument(sentence);
+                            nub++;
+                            setname.add(ls[1]);
+                        }
+
+                    }
                 }
 
             }
             br.close();
         }
         indexWriter.close();
+        System.out.println(nub);
 
     }
 
     public static void main(String[] args) throws Exception {
         BuildIndex bi = new BuildIndex();
-        String pathFile = config.share_links;
+        String pathFile = config.disk_message_path;
         String indexPath = config.lucene_index_path;
         bi.buildNewIndex(pathFile,indexPath);
     }

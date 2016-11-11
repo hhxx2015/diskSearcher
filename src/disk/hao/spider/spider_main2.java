@@ -43,8 +43,7 @@ public class spider_main2 {
 
     }
 
-
-    public void fansUidParser(List<fans> fans_list,int deep)
+    private void fansUidParser(List<fans> fans_list,int deep)
             throws IOException, InterruptedException {
         if(fans_list!=null){
             if(fans_list.size()>0){
@@ -57,7 +56,7 @@ public class spider_main2 {
     }
 
 
-    public void followUidParser(List<follow> follow_list,int deep)
+    private void followUidParser(List<follow> follow_list,int deep)
             throws IOException, InterruptedException {
         if(follow_list!=null){
             if(follow_list.size()>0) {
@@ -70,7 +69,7 @@ public class spider_main2 {
 
     }
 
-    public boolean recursion_parser (String uid,int deep
+    private boolean recursion_parser (String uid,int deep
                 ,int fans,int follow,int share){
         deep++;
         if(deep>config.SPIDER_DEEP){
@@ -80,67 +79,54 @@ public class spider_main2 {
             System.err.println("contain id "+uid);
             return false;
         }
-        System.out.println(""+deep);
+        System.out.println("spider deep："+deep);
         uidset.add(uid);
 
-        if(share>5){
+        if(share>1){
             cachedThreadPool.execute(new Runnable() {
                 @Override
-                public void run() {
+                public void run(){
                     try {
                         BufferedWriter bw = new BufferedWriter(new FileWriter(new File(
                                 config.disk_message_path + uid+".txt")));
                         bw.write(uid+"\n");
                         downLoad_share_short_link(uid,bw);
                         bw.close();
-                    } catch (IOException e) {
+                    } catch (IOException|InterruptedException e) {
                         e.printStackTrace();
-                    } catch (InterruptedException e2) {
-                        e2.printStackTrace();
                     }
-
                 }
             });
         }
 
-
-        if(fans>5){
+        if(fans>0){
             ArrayList<String> fans_urls = fansParser.get_urls(uid);
             for (String fansurl : fans_urls){
                 String fans_json = requestUtil.download_url_out(fansurl);
                 List<fans> fans_records = gson.fromJson(fans_json,fans_list.class).getRecords();
                 try {
                     fansUidParser(fans_records,deep);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch(NullPointerException e ){
+                } catch (IOException|InterruptedException|NullPointerException e) {
                     e.printStackTrace();
                 }
             }
         }
-        if(follow>5){
+        if(follow>0){
             ArrayList<String> follow_urls = followParser.get_urls(uid);
             for (String followurl : follow_urls){
                 String follow_json = requestUtil.download_url_out(followurl);
                 List<follow> follow_records = gson.fromJson(follow_json,follow_list.class).getRecords();
                 try {
                     followUidParser(follow_records,deep);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (NullPointerException e ) {
+                } catch (IOException|InterruptedException|NullPointerException e) {
                     e.printStackTrace();
                 }
             }
         }
-
         return true;
     }
 
-    public void downLoad_share_short_link(String uid,BufferedWriter bw)
+    private void downLoad_share_short_link(String uid,BufferedWriter bw)
             throws IOException, InterruptedException {
         ArrayList<String> share_urls = sharelistParser.get_urls(uid);
         for(String shareUrl : share_urls){
@@ -159,7 +145,7 @@ public class spider_main2 {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         spider_main2 spiderMain = new spider_main2();
-        spiderMain.recursion_parser("1381788159",0,61,7,131);
+        spiderMain.recursion_parser("706045281",0,6,56,28);
     }
 
 }

@@ -119,11 +119,12 @@ public class Request_util {
 //    https://yun.baidu.com/pcloud/feed/getsharelist?t=1475065359126&category=0&auth_type=1&request_location=share_home&start=1&limit=6&query_uk=3560277524
 //    https://pan.baidu.com/pcloud/feed/getsharelist?t=1477142265745&category=0&auth_type=1&request_location=share_home&start=0&limit=60&query_uk=3678306532&channel=chunlei&clienttype=0&web=1
 
-    public static void main(String[] args) {
-        Request_util r = new Request_util();
-        String s = "https://pan.baidu.com/pcloud/feed/getsharelist?t=1477142265745&category=0&auth_type=1&request_location=share_home&start=0&limit=60&query_uk=3678306532&channel=chunlei&clienttype=0&web=1";
-        String uid = r.getuid(s);
-        System.out.println(uid);
+    public static void main(String[] args){
+//        Request_util r = new Request_util();
+//        String s = "https://pan.baidu.com/pcloud/feed/getsharelist?t=1477142265745&category=0&auth_type=1&request_location=share_home&start=0&limit=60&query_uk=3678306532&channel=chunlei&clienttype=0&web=1";
+//        String uid = r.getuid(s);
+//        System.out.println(uid);
+
     }
 
 }

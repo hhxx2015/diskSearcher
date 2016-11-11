@@ -111,7 +111,4 @@ public class LuceneSearcher {
 //            System.out.println(sd);
 //        }
     }
-	
-	
-	
 }

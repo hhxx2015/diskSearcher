@@ -101,7 +101,6 @@
     <orderEntry type="library" name="commons-codec-1.9" level="project" />
     <orderEntry type="library" name="com.google.code.gson:gson:2.7" level="project" />
     <orderEntry type="library" name="gson-2.7-sources" level="project" />
-    <orderEntry type="library" name="gson-2.7-sources (2)" level="project" />
     <orderEntry type="library" name="gson-2.7" level="project" />
   </component>
 </module>

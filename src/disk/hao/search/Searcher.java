@@ -18,7 +18,7 @@ public class Searcher {
 		ArrayList<SearchResult>  re = new ArrayList<>();
 		try {
 			String indexPath = config.lucene_index_path;
-			int top=100;
+			int top=1000;
 			String field = "content";
 	        Analyzer analyzer = new StandardAnalyzer();
 	        
@@ -33,7 +33,6 @@ public class Searcher {
 			//e.printStackTrace();
 		}
         return re;
-        
 	}
 	
 	
@@ -41,8 +40,5 @@ public class Searcher {
 		Searcher a = new Searcher();
 		System.out.println(a.search("语文英").size());
 	}
-	
-	
-	
 	
 }
